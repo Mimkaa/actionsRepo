@@ -1,7 +1,7 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class DeleteMain {
+public class Main {
 
     public static void main(String[] args) {
         try {
