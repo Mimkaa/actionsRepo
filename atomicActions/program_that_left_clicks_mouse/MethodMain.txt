@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    System.out.println("Attempting left mouse click...");
+    try {
+        new Main().leftClick();
+        System.out.println("Left click performed.");
+    } catch (Throwable t) {
+        System.out.println("Failed to click (likely headless/permission issue):");
+        t.printStackTrace();
+    } finally {
+        try {
+            java.nio.file.Files.write(java.nio.file.Paths.get(".ready"), new byte[0]);
+            System.out.println("Created .ready (pipeline will terminate).");
+        } catch (Throwable t2) {
+            System.out.println("Failed to create .ready:");
+            t2.printStackTrace();
+        }
+    }
+}

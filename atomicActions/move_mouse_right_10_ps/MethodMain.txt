@@ -1,0 +1,20 @@
+public static void main(String[] args){
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        java.awt.PointerInfo pi=java.awt.MouseInfo.getPointerInfo();
+        if(pi==null||pi.getLocation()==null){
+            System.out.println("Mouse pointer info unavailable");
+        }else{
+            java.awt.Point p=pi.getLocation();
+            r.mouseMove(p.x+10,p.y);
+            System.out.println("Moved mouse 10 pixels right");
+        }
+    }catch(Throwable t){
+        t.printStackTrace();
+    }
+    try{
+        new java.io.File(".ready").createNewFile();
+    }catch(Throwable t){
+        t.printStackTrace();
+    }
+}

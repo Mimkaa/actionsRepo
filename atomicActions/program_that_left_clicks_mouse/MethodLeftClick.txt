@@ -1,0 +1,6 @@
+public void leftClick() throws Exception {
+    java.awt.Robot r = new java.awt.Robot();
+    r.setAutoDelay(20);
+    r.mousePress(java.awt.event.InputEvent.BUTTON1_DOWN_MASK);
+    r.mouseRelease(java.awt.event.InputEvent.BUTTON1_DOWN_MASK);
+}

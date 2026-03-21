@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    try {
+        System.out.println("Right click will be pressed in 2 seconds...");
+        java.awt.Robot r = new java.awt.Robot();
+        Thread.sleep(2000);
+        r.mousePress(java.awt.event.InputEvent.BUTTON3_DOWN_MASK);
+        r.mouseRelease(java.awt.event.InputEvent.BUTTON3_DOWN_MASK);
+        System.out.println("Right click pressed.");
+
+        // Signal pipeline termination (Rule 0)
+        new java.io.File(".ready").createNewFile();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

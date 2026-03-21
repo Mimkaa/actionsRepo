@@ -1,0 +1,20 @@
+public static void main(String[] args){
+    try{
+        try{
+            java.awt.Robot robot = new java.awt.Robot();
+            robot.keyPress(java.awt.event.KeyEvent.VK_BACK_QUOTE);
+            robot.keyRelease(java.awt.event.KeyEvent.VK_BACK_QUOTE);
+            System.out.println("Pressed `");
+        }catch(Throwable t){
+            System.out.println("Failed to press `: "+t);
+        }
+        try{
+            java.nio.file.Path p = java.nio.file.Paths.get(".ready");
+            if(!java.nio.file.Files.exists(p)) java.nio.file.Files.createFile(p);
+        }catch(Throwable t){
+            // ignore
+        }
+    }catch(Throwable t){
+        System.out.println("Unexpected error: "+t);
+    }
+}

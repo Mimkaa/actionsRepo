@@ -1,0 +1,24 @@
+public static void main(String[] args) {
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        java.awt.PointerInfo pi = java.awt.MouseInfo.getPointerInfo();
+        if (pi == null) {
+            System.out.println("MouseInfo.getPointerInfo() returned null (headless or unsupported environment).");
+            return;
+        }
+        java.awt.Point p = pi.getLocation();
+        int x = (int) p.getX();
+        int y = (int) p.getY();
+        System.out.println("Mouse before: (" + x + ", " + y + ")");
+        r.mouseMove(x, y - 10);
+        java.awt.PointerInfo pi2 = java.awt.MouseInfo.getPointerInfo();
+        if (pi2 != null) {
+            java.awt.Point p2 = pi2.getLocation();
+            System.out.println("Mouse after:  (" + (int) p2.getX() + ", " + (int) p2.getY() + ")");
+        } else {
+            System.out.println("Mouse moved (cannot read back position: PointerInfo null).");
+        }
+    } catch (Throwable t) {
+        t.printStackTrace();
+    }
+}

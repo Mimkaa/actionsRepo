@@ -1,0 +1,16 @@
+public static void main(String[] args){
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        r.keyPress(java.awt.event.KeyEvent.VK_4);
+        r.keyRelease(java.awt.event.KeyEvent.VK_4);
+        System.out.println("Pressed 4");
+    }catch(Throwable t){
+        System.out.println("Robot failed: "+t);
+    }
+    try{
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready");
+    }catch(Throwable t){
+        System.out.println("Failed to create .ready: "+t);
+    }
+}

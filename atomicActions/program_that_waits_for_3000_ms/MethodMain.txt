@@ -1,0 +1,11 @@
+public static void main(String[] args){
+    System.out.println("Creating Robot; waiting 3000ms...");
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        r.delay(3000);
+        System.out.println("Done waiting.");
+    }catch(java.awt.AWTException e){
+        System.out.println("Failed to create Robot: "+e);
+        e.printStackTrace();
+    }
+}

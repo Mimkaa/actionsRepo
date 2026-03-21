@@ -1,0 +1,15 @@
+public static void main(String[] args) {
+    try {
+        java.awt.PointerInfo pi = java.awt.MouseInfo.getPointerInfo();
+        java.awt.Point p = pi.getLocation();
+        int x = (int) p.getX();
+        int y = (int) p.getY();
+
+        java.awt.Robot r = new java.awt.Robot();
+        r.mouseMove(x - 10, y);
+
+        System.out.println("Moved mouse left by 10 pixels: (" + x + "," + y + ") -> (" + (x - 10) + "," + y + ")");
+    } catch (Throwable t) {
+        t.printStackTrace();
+    }
+}

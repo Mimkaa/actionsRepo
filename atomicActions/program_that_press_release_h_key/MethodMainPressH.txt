@@ -1,0 +1,17 @@
+public static void main(String[] args){
+    try{
+        // Give the user a moment to focus the target window
+        Thread.sleep(2000);
+        java.awt.Robot robot=new java.awt.Robot();
+        robot.setAutoDelay(40);
+        robot.keyPress(java.awt.event.KeyEvent.VK_H);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_H);
+        System.out.println("Pressed H key");
+
+        // Terminate the STECHEN loop by creating a file named .ready (not via CreateTextFile)
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready");
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+}

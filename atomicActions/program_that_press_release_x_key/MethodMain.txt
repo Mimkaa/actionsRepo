@@ -1,0 +1,31 @@
+public static void main(String[] args){
+  try{
+    System.out.println("Pressing X key via java.awt.Robot...");
+    java.awt.Robot r=new java.awt.Robot();
+    r.setAutoDelay(50);
+    r.keyPress(java.awt.event.KeyEvent.VK_X);
+    r.keyRelease(java.awt.event.KeyEvent.VK_X);
+    System.out.println("Done pressing X.");
+  }catch(java.awt.AWTException e){
+    System.out.println("AWTException: "+e);
+  }catch(java.awt.HeadlessException e){
+    System.out.println("HeadlessException (no GUI available): "+e);
+  }
+
+  // Rule 0 termination signal: create a FILE named .ready
+  try{
+    java.nio.file.Path p=java.nio.file.Paths.get(".ready");
+    if(java.nio.file.Files.exists(p)){
+      if(java.nio.file.Files.isDirectory(p)){
+        System.out.println(".ready exists but is a directory; leaving as-is.");
+      }else{
+        System.out.println(".ready file already exists.");
+      }
+    }else{
+      java.nio.file.Files.createFile(p);
+      System.out.println("Created .ready file.");
+    }
+  }catch(Exception e){
+    System.out.println("Failed to create .ready file: "+e);
+  }
+}

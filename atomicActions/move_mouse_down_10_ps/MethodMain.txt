@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    System.out.println("Moving mouse 10 pixels down...");
+
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        java.awt.PointerInfo pi = java.awt.MouseInfo.getPointerInfo();
+        if (pi == null) {
+            System.out.println("No mouse pointer info available (possibly headless environment). Aborting.");
+            return;
+        }
+
+        java.awt.Point p = pi.getLocation();
+        int newX = p.x;
+        int newY = p.y + 10;
+        r.mouseMove(newX, newY);
+
+        System.out.println("Done. Old=" + p.x + "," + p.y + " New=" + newX + "," + newY);
+    } catch (Exception e) {
+        System.out.println("Failed to move mouse: " + e);
+        e.printStackTrace();
+    }
+}

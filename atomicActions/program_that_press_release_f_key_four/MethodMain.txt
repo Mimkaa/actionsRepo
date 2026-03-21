@@ -1,0 +1,13 @@
+public static void main(String[] args) {
+    System.out.println("Pressing F4 in 1 second...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        Thread.sleep(1000);
+        r.keyPress(java.awt.event.KeyEvent.VK_F4);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F4);
+        System.out.println("Done.");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    System.out.println("Pressing r key...");
+    try {
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.setAutoDelay(50);
+        robot.keyPress(java.awt.event.KeyEvent.VK_R);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_R);
+        System.out.println("Done.");
+    } catch (java.awt.AWTException e) {
+        System.out.println("Robot failed: " + e);
+    }
+
+    // signal pipeline completion
+    try {
+        new java.io.File(".ready").createNewFile();
+        System.out.println(".ready created.");
+    } catch (java.io.IOException ioe) {
+        System.out.println("Failed to create .ready: " + ioe);
+    }
+}
