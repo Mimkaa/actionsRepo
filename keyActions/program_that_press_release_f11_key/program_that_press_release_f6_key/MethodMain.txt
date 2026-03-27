@@ -1,0 +1,17 @@
+public static void main(String[] args){
+    try{
+        System.out.println("Pressing F6 in 2 seconds...");
+        Thread.sleep(2000);
+        java.awt.Robot robot=new java.awt.Robot();
+        robot.keyPress(java.awt.event.KeyEvent.VK_F6);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_F6);
+        System.out.println("Done.");
+        new java.io.File(".ready").createNewFile();
+    }catch(java.awt.AWTException e){
+        System.out.println("AWTException: "+e);
+    }catch(InterruptedException e){
+        System.out.println("Interrupted: "+e);
+    }catch(java.io.IOException e){
+        System.out.println("IOException: "+e);
+    }
+}

@@ -1,0 +1,21 @@
+public static void main(String[] args){
+    System.out.println("Attempting to press 'f' key using java.awt.Robot...");
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.delay(500);
+        r.keyPress(java.awt.event.KeyEvent.VK_F);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F);
+        System.out.println("Pressed and released 'f'.");
+    }catch(Exception e){
+        System.out.println("Failed to press key: "+e);
+        e.printStackTrace();
+    }
+    try{
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready");
+    }catch(Exception e){
+        System.out.println("Failed to create .ready: "+e);
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,14 @@
+public static void main(String[] args) {
+    System.out.println("Pressing 6 key in 500ms...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.delay(500);
+        r.keyPress(java.awt.event.KeyEvent.VK_6);
+        r.keyRelease(java.awt.event.KeyEvent.VK_6);
+        System.out.println("Done (pressed 6).");
+    } catch (Exception e) {
+        System.out.println("Failed to press key: " + e);
+        e.printStackTrace();
+    }
+}

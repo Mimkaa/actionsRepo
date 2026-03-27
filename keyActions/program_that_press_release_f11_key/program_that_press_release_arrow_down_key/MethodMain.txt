@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    System.out.println("Attempting to press ARROW DOWN using java.awt.Robot...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_DOWN);
+        r.keyRelease(java.awt.event.KeyEvent.VK_DOWN);
+        System.out.println("Pressed ARROW DOWN.");
+    } catch (Throwable t) {
+        System.out.println("Failed to press key: " + t);
+        t.printStackTrace();
+    }
+
+    // Terminate planner loop by creating .ready (must NOT be created via CreateTextFile)
+    try {
+        java.nio.file.Files.writeString(java.nio.file.Path.of(".ready"), "ready\n");
+        System.out.println("Created .ready; exiting.");
+    } catch (Throwable t) {
+        System.out.println("Failed to create .ready: " + t);
+        t.printStackTrace();
+    }
+}

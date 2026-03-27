@@ -1,0 +1,16 @@
+public static void main(String[] args){
+    try{
+        if(java.awt.GraphicsEnvironment.isHeadless()){
+            System.out.println("Cannot press ESC: AWT is headless in this environment.");
+            return;
+        }
+        java.awt.Robot r=new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_ESCAPE);
+        r.keyRelease(java.awt.event.KeyEvent.VK_ESCAPE);
+        System.out.println("Pressed ESC");
+    }catch(Throwable t){
+        System.out.println("Failed to press ESC: "+t);
+        t.printStackTrace();
+    }
+}

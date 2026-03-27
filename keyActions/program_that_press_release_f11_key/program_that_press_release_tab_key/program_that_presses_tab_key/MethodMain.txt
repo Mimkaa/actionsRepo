@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    System.out.println("Pressing TAB key...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.keyPress(java.awt.event.KeyEvent.VK_TAB);
+        r.keyRelease(java.awt.event.KeyEvent.VK_TAB);
+        System.out.println("Done.");
+    } catch (Exception e) {
+        System.out.println("Failed to press TAB: " + e);
+        e.printStackTrace();
+    }
+
+    // terminate the pipeline loop by creating .ready (Rule 0)
+    try {
+        java.nio.file.Path p = java.nio.file.Paths.get(".ready");
+        if (!java.nio.file.Files.exists(p)) {
+            java.nio.file.Files.createFile(p);
+        }
+        System.out.println("Created .ready");
+    } catch (Exception e) {
+        System.out.println("Failed to create .ready: " + e);
+    }
+}

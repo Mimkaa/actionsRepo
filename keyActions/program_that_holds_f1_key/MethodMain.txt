@@ -1,0 +1,38 @@
+public static void main(String[] args){
+  try{
+    // Set before any AWT initialization
+    System.setProperty("java.awt.headless","false");
+    System.out.println("headless="+java.awt.GraphicsEnvironment.isHeadless());
+
+    // Create Robot and press/release F1
+    java.awt.Robot r=new java.awt.Robot();
+    r.setAutoDelay(50);
+    System.out.println("Sleeping 1000ms before keypress...");
+    r.delay(1000);
+    r.keyPress(java.awt.event.KeyEvent.VK_F1);
+    r.keyRelease(java.awt.event.KeyEvent.VK_F1);
+    System.out.println("Pressed F1 via Robot.");
+
+    // Signal completion by creating .ready FILE (not via CreateTextFile)
+    java.nio.file.Path p=java.nio.file.Paths.get(".ready");
+    try{
+      if(java.nio.file.Files.exists(p)){
+        // If a previous run created a directory named .ready, remove it first
+        if(java.nio.file.Files.isDirectory(p)){
+          java.nio.file.Files.delete(p);
+        }else{
+          System.out.println(".ready already exists as a file.");
+          return;
+        }
+      }
+      java.nio.file.Files.createFile(p);
+      System.out.println("Created .ready file.");
+    }catch(Throwable t){
+      System.out.println("Could not create .ready: "+t);
+      t.printStackTrace(System.out);
+    }
+  }catch(Throwable t){
+    System.out.println("FAILED to press F1: "+t);
+    t.printStackTrace(System.out);
+  }
+}

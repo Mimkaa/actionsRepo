@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    System.out.println("Pressing '-' key...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_MINUS);
+        r.keyRelease(java.awt.event.KeyEvent.VK_MINUS);
+        System.out.println("Done.");
+    } catch (java.awt.AWTException e) {
+        throw new RuntimeException(e);
+    }
+}

@@ -1,0 +1,20 @@
+public static void main(String[] args){
+    System.out.println("Attempting to press 'p' via java.awt.Robot...");
+    try{
+        if(java.awt.GraphicsEnvironment.isHeadless()){
+            System.out.println("Headless environment detected (no GUI). Cannot send key events.");
+            return;
+        }
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.setAutoDelay(50);
+        // Small delay to allow user to focus the target window
+        System.out.println("You have 2 seconds to focus the target window...");
+        robot.delay(2000);
+        robot.keyPress(java.awt.event.KeyEvent.VK_P);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_P);
+        System.out.println("Sent key event: P");
+    }catch(Throwable t){
+        System.out.println("Failed to send key event: "+t);
+        t.printStackTrace();
+    }
+}

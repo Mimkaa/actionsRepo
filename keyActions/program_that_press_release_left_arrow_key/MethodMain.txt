@@ -1,0 +1,17 @@
+public static void main(String[] args){
+  System.out.println("Pressing LEFT arrow in 2 seconds...");
+  try{
+    Thread.sleep(2000);
+    java.awt.Robot r=new java.awt.Robot();
+    r.keyPress(java.awt.event.KeyEvent.VK_LEFT);
+    r.keyRelease(java.awt.event.KeyEvent.VK_LEFT);
+    System.out.println("Done.");
+  }catch(Throwable t){
+    t.printStackTrace();
+  }
+  try{
+    new java.io.File(".ready").createNewFile();
+  }catch(Throwable t){
+    t.printStackTrace();
+  }
+}

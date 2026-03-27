@@ -1,0 +1,19 @@
+public static void main(String[] args){
+    System.out.println("Pressing F9 in 2 seconds...");
+    try{
+        Thread.sleep(2000);
+        java.awt.Robot r = new java.awt.Robot();
+        r.keyPress(java.awt.event.KeyEvent.VK_F9);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F9);
+        System.out.println("Done (F9 pressed).");
+    }catch(Throwable t){
+        System.out.println("Failed to press F9: "+t);
+        t.printStackTrace(System.out);
+    }
+    try{
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready file.");
+    }catch(Throwable t){
+        System.out.println("Failed to create .ready file: "+t);
+    }
+}

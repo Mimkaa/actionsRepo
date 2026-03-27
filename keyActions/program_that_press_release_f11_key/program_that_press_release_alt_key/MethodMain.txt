@@ -1,0 +1,22 @@
+public static void main(String[] args) {
+    System.out.println("Pressing ALT key...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_ALT);
+        r.delay(100);
+        r.keyRelease(java.awt.event.KeyEvent.VK_ALT);
+        System.out.println("Done.");
+
+        // Create .ready to terminate the STECHEN loop (Rule 0)
+        try {
+            java.nio.file.Files.write(java.nio.file.Paths.get(".ready"), new byte[0]);
+            System.out.println("Created .ready");
+        } catch (Exception ignored) {
+            // best-effort
+        }
+    } catch (Exception e) {
+        System.out.println("Failed to press ALT: " + e);
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    System.out.println("Attempting to press F3...");
+    try {
+        Thread.sleep(500);
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.keyPress(java.awt.event.KeyEvent.VK_F3);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_F3);
+        System.out.println("F3 key press sent.");
+    } catch (Throwable t) {
+        System.out.println("Failed to press F3: " + t);
+        t.printStackTrace(System.out);
+    } finally {
+        // Signal pipeline termination (Rule 0) by creating a .ready FILE (not via CreateTextFile).
+        try { new java.io.File(".ready").createNewFile(); } catch (Throwable ignore) {}
+    }
+}

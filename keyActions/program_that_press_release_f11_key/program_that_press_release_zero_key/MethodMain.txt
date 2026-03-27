@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+    System.out.println("Attempting to press the '0' key using java.awt.Robot...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_0);
+        r.keyRelease(java.awt.event.KeyEvent.VK_0);
+        System.out.println("Pressed '0'.");
+    } catch (Throwable t) {
+        System.out.println("Failed to press '0': " + t);
+        t.printStackTrace();
+    }
+
+    // Terminate STECHEN loop: create .ready (must not be created via CreateTextFile)
+    try {
+        java.io.File f = new java.io.File(".ready");
+        if (f.createNewFile()) {
+            System.out.println("Created .ready");
+        } else {
+            System.out.println(".ready already exists");
+        }
+    } catch (Throwable t) {
+        System.out.println("Failed to create .ready: " + t);
+        t.printStackTrace();
+    }
+}

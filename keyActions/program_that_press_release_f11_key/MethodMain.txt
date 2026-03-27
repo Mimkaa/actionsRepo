@@ -1,0 +1,20 @@
+public static void main(String[] args) {
+    System.out.println("Pressing F11 in 2 seconds...");
+    try {
+        Thread.sleep(2000);
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.keyPress(java.awt.event.KeyEvent.VK_F11);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_F11);
+        System.out.println("Done.");
+
+        // Signal completion for the pipeline loop
+        java.io.File ready = new java.io.File(".ready");
+        if (ready.createNewFile()) {
+            System.out.println("Created .ready");
+        } else {
+            System.out.println(".ready already exists");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

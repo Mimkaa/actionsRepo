@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    System.out.println("Pressing the apostrophe (') key using java.awt.Robot...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(20);
+        r.delay(300);
+        r.keyPress(java.awt.event.KeyEvent.VK_QUOTE);
+        r.keyRelease(java.awt.event.KeyEvent.VK_QUOTE);
+        System.out.println("Done.");
+    } catch (java.awt.AWTException e) {
+        System.out.println("Robot failed: " + e);
+    }
+
+    // Terminate STECHEN loop by creating the .ready file (Rule 0)
+    try {
+        java.io.File f = new java.io.File(".ready");
+        if (f.createNewFile()) {
+            System.out.println("Created .ready");
+        } else {
+            System.out.println(".ready already exists");
+        }
+    } catch (Exception e) {
+        System.out.println("Failed to create .ready: " + e);
+    }
+}

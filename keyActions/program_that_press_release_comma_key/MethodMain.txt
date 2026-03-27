@@ -1,0 +1,21 @@
+public static void main(String[] args) {
+    System.out.println("Attempting to press ',' (comma) key using Robot...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_COMMA);
+        r.keyRelease(java.awt.event.KeyEvent.VK_COMMA);
+        System.out.println("Done: pressed ',' (comma).");
+    } catch (Throwable t) {
+        System.out.println("Failed to press key: " + t);
+        t.printStackTrace();
+    }
+
+    // Signal pipeline termination
+    try {
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready");
+    } catch (Throwable t) {
+        System.out.println("Could not create .ready: " + t);
+    }
+}

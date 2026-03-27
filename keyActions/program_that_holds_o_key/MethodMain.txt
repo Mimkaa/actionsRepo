@@ -1,0 +1,16 @@
+public static void main(String[] args){
+    System.out.println("Pressing 'o' key...");
+    try{
+        java.awt.Robot robot=new java.awt.Robot();
+        robot.keyPress(java.awt.event.KeyEvent.VK_O);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_O);
+        System.out.println("Done.");
+    }catch(Throwable t){
+        System.out.println("Robot keypress failed: "+t);
+    }
+    try{
+        new java.io.File(".ready").createNewFile();
+    }catch(Throwable t){
+        System.out.println("Failed to create .ready file: "+t);
+    }
+}

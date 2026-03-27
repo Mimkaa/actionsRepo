@@ -1,0 +1,25 @@
+public static void main(String[] args){
+    System.out.println("Attempting to press 'i' key using java.awt.Robot...");
+    try{
+        java.awt.Robot robot=new java.awt.Robot();
+        robot.setAutoDelay(50);
+        robot.keyPress(java.awt.event.KeyEvent.VK_I);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_I);
+        System.out.println("Done.");
+    }catch(Throwable t){
+        System.out.println("Robot failed: "+t);
+        t.printStackTrace();
+    }
+    try{
+        java.io.File f=new java.io.File(".ready");
+        if(!f.exists()){
+            boolean ok=f.createNewFile();
+            System.out.println("Created .ready file: "+ok);
+        }else{
+            System.out.println(".ready file already exists.");
+        }
+    }catch(Throwable t){
+        System.out.println("Failed to create .ready file: "+t);
+        t.printStackTrace();
+    }
+}

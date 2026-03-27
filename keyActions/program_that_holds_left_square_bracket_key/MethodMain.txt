@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+    System.out.println("Pressing [ key...");
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_OPEN_BRACKET);
+        r.keyRelease(java.awt.event.KeyEvent.VK_OPEN_BRACKET);
+        System.out.println("Done.");
+
+        // Terminate STECHEN loop by creating a .ready FILE (not a directory)
+        java.io.File ready = new java.io.File(".ready");
+        if (!ready.exists()) {
+            ready.createNewFile();
+        }
+    } catch (Throwable t) {
+        t.printStackTrace();
+    }
+}

@@ -1,0 +1,22 @@
+public static void main(String[] args){
+    System.out.println("Pressing F7...");
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        r.setAutoDelay(50);
+        r.keyPress(java.awt.event.KeyEvent.VK_F7);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F7);
+        System.out.println("Done.");
+    }catch(java.awt.AWTException e){
+        System.out.println("Robot/AWT not available: "+e);
+    }catch(java.lang.SecurityException e){
+        System.out.println("Security manager blocked Robot: "+e);
+    }
+
+    // create termination flag file (Rule 0)
+    try{
+        new java.io.File(".ready").createNewFile();
+        System.out.println("Created .ready file.");
+    }catch(java.io.IOException ioe){
+        System.out.println("Could not create .ready file: "+ioe);
+    }
+}

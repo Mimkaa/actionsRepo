@@ -1,0 +1,19 @@
+public static void main(String[] args) {
+    System.out.println("Attempting to press DELETE key via java.awt.Robot...");
+    try {
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.setAutoDelay(50);
+        // Small delay to allow user to focus the target window.
+        Thread.sleep(1500);
+        robot.keyPress(java.awt.event.KeyEvent.VK_DELETE);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_DELETE);
+        System.out.println("DELETE key press+release sent.");
+    } catch (java.awt.AWTException e) {
+        System.out.println("Failed to create Robot (AWTException): " + e);
+        e.printStackTrace();
+    } catch (InterruptedException e) {
+        System.out.println("Interrupted while waiting: " + e);
+        e.printStackTrace();
+        Thread.currentThread().interrupt();
+    }
+}

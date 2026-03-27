@@ -1,0 +1,26 @@
+public static void main(String[] args){
+    System.out.println("Attempting to press 'j' key via java.awt.Robot...");
+    try{
+        java.awt.Robot r=new java.awt.Robot();
+        r.setAutoDelay(50);
+        // Small delay to allow focus to be on the desired window
+        r.delay(500);
+        r.keyPress(java.awt.event.KeyEvent.VK_J);
+        r.keyRelease(java.awt.event.KeyEvent.VK_J);
+        System.out.println("Pressed 'j'.");
+    }catch(Exception e){
+        System.out.println("Failed to press key: "+e);
+        e.printStackTrace();
+    }
+    try{
+        java.io.File f=new java.io.File(".ready");
+        if(f.createNewFile()){
+            System.out.println("Created .ready");
+        }else{
+            System.out.println(".ready already exists");
+        }
+    }catch(Exception e){
+        System.out.println("Failed to create .ready: "+e);
+        e.printStackTrace();
+    }
+}
