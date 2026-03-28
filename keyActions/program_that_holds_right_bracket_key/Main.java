@@ -1,5 +1,7 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -11,29 +13,24 @@ public class Main {
             System.out.println("Pressing (HOLD) key: right_bracket");
             robot = new Robot();
             robot.setAutoDelay(30);
-            robot.keyPress(KeyEvent.VK_CLOSE_BRACKET);
+            robot.keyPress(93);
             System.out.println("Done (key is now held down).");
-
-            Files.write(
-                Path.of(".ready"),
-                new byte[0],
-                StandardOpenOption.CREATE,
-                StandardOpenOption.TRUNCATE_EXISTING
-            );
-
+            Files.write(Path.of(".ready", new String[0]), new byte[0], StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             Thread.sleep(Long.MAX_VALUE);
-
-        } catch (Throwable throwable) {
-            System.out.println("Failed: " + throwable);
+        }
+        catch (Throwable throwable) {
+            System.out.println("Failed: " + String.valueOf(throwable));
             throwable.printStackTrace(System.out);
-        } finally {
+        }
+        finally {
             if (robot != null) {
                 try {
-                    robot.keyRelease(KeyEvent.VK_CLOSE_BRACKET);
+                    robot.keyRelease(93);
                     System.out.println("Released key on exit.");
-                } catch (Throwable releaseError) {
-                    System.out.println("Failed to release key: " + releaseError);
-                    releaseError.printStackTrace(System.out);
+                }
+                catch (Throwable throwable) {
+                    System.out.println("Failed to release key: " + String.valueOf(throwable));
+                    throwable.printStackTrace(System.out);
                 }
             }
         }
