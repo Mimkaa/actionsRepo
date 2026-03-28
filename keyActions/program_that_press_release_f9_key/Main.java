@@ -1,35 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Pressing F9 in 2 seconds...");
+    public static void main(String[] args) {
         try {
-            Thread.sleep(2000L);
             Robot robot = new Robot();
-            robot.keyPress(120);
-            robot.keyRelease(120);
-            System.out.println("Done (F9 pressed).");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press F9: " + throwable);
-            throwable.printStackTrace(System.out);
-        }
-        try {
-            new File(".ready").createNewFile();
-            System.out.println("Created .ready file.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready file: " + throwable);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'f9' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_F9);
+            System.out.println("F9 DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_F9);
+            System.out.println("F9 UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

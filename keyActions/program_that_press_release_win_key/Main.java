@@ -1,36 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Attempting to press WIN key via java.awt.Robot...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(524);
-            robot.keyRelease(524);
-            System.out.println("WIN key press+release sent.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Robot failed: " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            new File(".ready").createNewFile();
-            System.out.println("Created .ready file.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready file: " + throwable);
-            throwable.printStackTrace();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'win' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_WINDOWS);
+            System.out.println("WIN DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_WINDOWS);
+            System.out.println("WIN UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

@@ -1,35 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Attempting to press ',' (comma) key using Robot...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(44);
-            robot.keyRelease(44);
-            System.out.println("Done: pressed ',' (comma).");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press key: " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            new File(".ready").createNewFile();
-            System.out.println("Created .ready");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Could not create .ready: " + throwable);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'comma' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_COMMA);
+            System.out.println("COMMA DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_COMMA);
+            System.out.println("COMMA UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

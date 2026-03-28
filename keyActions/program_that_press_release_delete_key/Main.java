@@ -1,34 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Attempting to press DELETE key via java.awt.Robot...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            Thread.sleep(1500L);
-            robot.keyPress(127);
-            robot.keyRelease(127);
-            System.out.println("DELETE key press+release sent.");
-        }
-        catch (AWTException aWTException) {
-            System.out.println("Failed to create Robot (AWTException): " + aWTException);
-            aWTException.printStackTrace();
-        }
-        catch (InterruptedException interruptedException) {
-            System.out.println("Interrupted while waiting: " + interruptedException);
-            interruptedException.printStackTrace();
-            Thread.currentThread().interrupt();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'delete' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_DELETE);
+            System.out.println("DELETE DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_DELETE);
+            System.out.println("DELETE UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

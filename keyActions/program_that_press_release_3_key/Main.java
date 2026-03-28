@@ -1,36 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
+    public static void main(String[] args) {
         try {
-            System.out.println("Pressing key: 3");
             Robot robot = new Robot();
-            robot.setAutoDelay(30);
-            robot.keyPress(51);
-            robot.keyRelease(51);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing '3' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_3);
+            System.out.println("3 DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_3);
+            System.out.println("3 UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press key: " + throwable);
-            throwable.printStackTrace(System.out);
-        }
-        try {
-            Files.write(Path.of(".ready", new String[0]), new byte[0], StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready: " + throwable);
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

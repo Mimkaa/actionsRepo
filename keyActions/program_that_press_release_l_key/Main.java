@@ -1,26 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Pressing 'l' key via Robot...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(76);
-            robot.keyRelease(76);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'l' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_L);
+            System.out.println("L DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_L);
+            System.out.println("L UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

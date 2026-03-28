@@ -1,31 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.GraphicsEnvironment;
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
+    public static void main(String[] args) {
         try {
-            if (GraphicsEnvironment.isHeadless()) {
-                System.out.println("Cannot press ESC: AWT is headless in this environment.");
-                return;
-            }
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(27);
-            robot.keyRelease(27);
-            System.out.println("Pressed ESC");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press ESC: " + throwable);
-            throwable.printStackTrace();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'esc' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_ESCAPE);
+            System.out.println("ESC DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_ESCAPE);
+            System.out.println("ESC UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

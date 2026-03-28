@@ -1,41 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.AWTException;
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Pressing the apostrophe (') key using java.awt.Robot...");
+    public static void main(String[] args) {
         try {
-            object = new Robot();
-            ((Robot)object).setAutoDelay(20);
-            ((Robot)object).delay(300);
-            ((Robot)object).keyPress(222);
-            ((Robot)object).keyRelease(222);
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'apostrophe' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_QUOTE);
+            System.out.println("APOSTROPHE DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_QUOTE);
+            System.out.println("APOSTROPHE UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (AWTException aWTException) {
-            System.out.println("Robot failed: " + aWTException);
-        }
-        try {
-            object = new File(".ready");
-            if (((File)object).createNewFile()) {
-                System.out.println("Created .ready");
-            } else {
-                System.out.println(".ready already exists");
-            }
-        }
-        catch (Exception exception) {
-            System.out.println("Failed to create .ready: " + exception);
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

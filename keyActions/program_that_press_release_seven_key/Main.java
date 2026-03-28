@@ -1,44 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.AWTException;
 import java.awt.Robot;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Paths;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
+    public static void main(String[] args) {
         try {
-            System.out.println("Attempting to press key '7' via java.awt.Robot...");
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.delay(300);
-            robot.keyPress(55);
-            robot.keyRelease(55);
-            System.out.println("Pressed '7'.");
-        }
-        catch (AWTException aWTException) {
-            System.out.println("Failed to create Robot (AWTException): " + aWTException);
-            aWTException.printStackTrace();
-        }
-        catch (Throwable throwable) {
-            System.out.println("Unexpected error: " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            Files.write(Paths.get(".ready", new String[0]), "done".getBytes(StandardCharsets.UTF_8), new OpenOption[0]);
-            System.out.println("Created .ready");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready: " + throwable);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'seven' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_7);
+            System.out.println("SEVEN DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_7);
+            System.out.println("SEVEN UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

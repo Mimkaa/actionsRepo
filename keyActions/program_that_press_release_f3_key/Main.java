@@ -1,34 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Attempting to press F3...");
+    public static void main(String[] args) {
         try {
-            Thread.sleep(500L);
             Robot robot = new Robot();
-            robot.keyPress(114);
-            robot.keyRelease(114);
-            System.out.println("F3 key press sent.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press F3: " + throwable);
-            throwable.printStackTrace(System.out);
-        }
-        finally {
-            try {
-                new File(".ready").createNewFile();
-            }
-            catch (Throwable throwable) {}
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'f3' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_F3);
+            System.out.println("F3 DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_F3);
+            System.out.println("F3 UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

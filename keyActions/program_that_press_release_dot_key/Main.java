@@ -1,45 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.GraphicsEnvironment;
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Pressing '.' via java.awt.Robot ...");
+    public static void main(String[] args) {
         try {
-            if (GraphicsEnvironment.isHeadless()) {
-                System.out.println("Headless environment detected; Robot cannot be used.");
-            } else {
-                object = new Robot();
-                ((Robot)object).setAutoDelay(50);
-                ((Robot)object).delay(500);
-                ((Robot)object).keyPress(46);
-                ((Robot)object).keyRelease(46);
-                System.out.println("Done (VK_PERIOD pressed and released).");
-            }
-        }
-        catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        try {
-            object = new File(".ready");
-            if (((File)object).createNewFile()) {
-                System.out.println("Created termination file: .ready");
-            } else {
-                System.out.println("Termination file already exists: .ready");
-            }
-        }
-        catch (Throwable throwable) {
-            throwable.printStackTrace();
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'dot' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_PERIOD);
+            System.out.println("DOT DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_PERIOD);
+            System.out.println("DOT UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

@@ -1,42 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Attempting to press 'i' key using java.awt.Robot...");
+    public static void main(String[] args) {
         try {
-            object = new Robot();
-            ((Robot)object).setAutoDelay(50);
-            ((Robot)object).keyPress(73);
-            ((Robot)object).keyRelease(73);
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'i' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_I);
+            System.out.println("I DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_I);
+            System.out.println("I UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Robot failed: " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            object = new File(".ready");
-            if (!((File)object).exists()) {
-                boolean bl = ((File)object).createNewFile();
-                System.out.println("Created .ready file: " + bl);
-            } else {
-                System.out.println(".ready file already exists.");
-            }
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready file: " + throwable);
-            throwable.printStackTrace();
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

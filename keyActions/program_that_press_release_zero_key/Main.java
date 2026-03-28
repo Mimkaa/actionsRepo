@@ -1,41 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Attempting to press the '0' key using java.awt.Robot...");
+    public static void main(String[] args) {
         try {
-            object = new Robot();
-            ((Robot)object).setAutoDelay(50);
-            ((Robot)object).keyPress(48);
-            ((Robot)object).keyRelease(48);
-            System.out.println("Pressed '0'.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press '0': " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            object = new File(".ready");
-            if (((File)object).createNewFile()) {
-                System.out.println("Created .ready");
-            } else {
-                System.out.println(".ready already exists");
-            }
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready: " + throwable);
-            throwable.printStackTrace();
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'zero' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_0);
+            System.out.println("ZERO DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_0);
+            System.out.println("ZERO UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

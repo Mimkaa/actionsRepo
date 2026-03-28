@@ -1,36 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
-import java.awt.AWTException;
 import java.awt.Robot;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Paths;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Pressing ] key...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.keyPress(93);
-            robot.keyRelease(93);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'right_bracket' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_CLOSE_BRACKET);
+            System.out.println("RIGHT_BRACKET DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_CLOSE_BRACKET);
+            System.out.println("RIGHT_BRACKET UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (AWTException aWTException) {
-            System.out.println("Robot failed: " + aWTException);
-        }
-        try {
-            Files.write(Paths.get(".ready", new String[0]), "ready".getBytes(StandardCharsets.UTF_8), new OpenOption[0]);
-        }
-        catch (Exception exception) {
-            // empty catch block
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

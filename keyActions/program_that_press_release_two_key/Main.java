@@ -1,36 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Pressing 2 key...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(50);
-            robot.keyRelease(50);
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'two' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_2);
+            System.out.println("TWO DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_2);
+            System.out.println("TWO UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Robot failed: " + throwable);
-            throwable.printStackTrace(System.out);
-        }
-        try {
-            new File(".ready").createNewFile();
-            System.out.println("Created .ready");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready: " + throwable);
-            throwable.printStackTrace(System.out);
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

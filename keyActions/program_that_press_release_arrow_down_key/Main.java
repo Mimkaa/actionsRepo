@@ -1,38 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        System.out.println("Attempting to press ARROW DOWN using java.awt.Robot...");
+    public static void main(String[] args) {
         try {
             Robot robot = new Robot();
-            robot.setAutoDelay(50);
-            robot.keyPress(40);
-            robot.keyRelease(40);
-            System.out.println("Pressed ARROW DOWN.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to press key: " + throwable);
-            throwable.printStackTrace();
-        }
-        try {
-            Files.writeString(Path.of(".ready", new String[0]), (CharSequence)"ready\n", new OpenOption[0]);
-            System.out.println("Created .ready; exiting.");
-        }
-        catch (Throwable throwable) {
-            System.out.println("Failed to create .ready: " + throwable);
-            throwable.printStackTrace();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'arrow_down' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_DOWN);
+            System.out.println("ARROW_DOWN DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_DOWN);
+            System.out.println("ARROW_DOWN UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

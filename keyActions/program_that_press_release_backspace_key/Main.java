@@ -1,40 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Pressing BACK_SPACE in 2 seconds...");
+    public static void main(String[] args) {
         try {
-            Thread.sleep(2000L);
-            object = new Robot();
-            ((Robot)object).keyPress(8);
-            ((Robot)object).keyRelease(8);
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'backspace' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+            System.out.println("BACKSPACE DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+            System.out.println("BACKSPACE UP");
+
+            Thread.sleep(200);
+
             System.out.println("Done.");
-        }
-        catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        try {
-            object = new File(".ready");
-            if (!((File)object).exists()) {
-                boolean bl = ((File)object).createNewFile();
-                System.out.println("Created .ready file: " + bl);
-            } else {
-                System.out.println(".ready already exists.");
-            }
-        }
-        catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }

@@ -1,42 +1,28 @@
-/*
- * Decompiled with CFR 0.152.
- */
 import java.awt.Robot;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 public class Main {
-    private String name;
-
-    public String sayHello() {
-        return "Hello from Main!";
-    }
-
-    public static void main(String[] stringArray) {
-        Object object;
-        System.out.println("Attempting to press 'j' key via java.awt.Robot...");
+    public static void main(String[] args) {
         try {
-            object = new Robot();
-            ((Robot)object).setAutoDelay(50);
-            ((Robot)object).delay(500);
-            ((Robot)object).keyPress(74);
-            ((Robot)object).keyRelease(74);
-            System.out.println("Pressed 'j'.");
-        }
-        catch (Exception exception) {
-            System.out.println("Failed to press key: " + exception);
-            exception.printStackTrace();
-        }
-        try {
-            object = new File(".ready");
-            if (((File)object).createNewFile()) {
-                System.out.println("Created .ready");
-            } else {
-                System.out.println(".ready already exists");
-            }
-        }
-        catch (Exception exception) {
-            System.out.println("Failed to create .ready: " + exception);
-            exception.printStackTrace();
+            Robot robot = new Robot();
+            robot.setAutoDelay(20);
+
+            System.out.println("Pressing 'j' key in 500ms...");
+            Thread.sleep(500);
+
+            robot.keyPress(KeyEvent.VK_J);
+            System.out.println("J DOWN");
+
+            Thread.sleep(200);
+
+            robot.keyRelease(KeyEvent.VK_J);
+            System.out.println("J UP");
+
+            Thread.sleep(200);
+
+            System.out.println("Done.");
+        } catch (Throwable t) {
+            t.printStackTrace();
         }
     }
 }
