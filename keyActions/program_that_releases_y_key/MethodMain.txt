@@ -1,0 +1,14 @@
+public static void main(String[] args){
+  System.out.println("Will press 'y' in 2 seconds. Focus the target window now...");
+  try{
+    Thread.sleep(2000);
+    java.awt.Robot r = new java.awt.Robot();
+    r.setAutoDelay(50);
+    r.keyPress(java.awt.event.KeyEvent.VK_Y);
+    r.keyRelease(java.awt.event.KeyEvent.VK_Y);
+    System.out.println("Pressed 'y'.");
+  }catch(Throwable t){
+    System.out.println("Failed to press 'y': "+t);
+    t.printStackTrace();
+  }
+}

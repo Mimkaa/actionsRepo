@@ -1,0 +1,18 @@
+public static void main(String[] args){
+    try{
+        System.out.println("About to press F5 in 1 second...");
+        Thread.sleep(1000);
+        java.awt.Robot r=new java.awt.Robot();
+        r.keyPress(java.awt.event.KeyEvent.VK_F5);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F5);
+        System.out.println("Pressed F5.");
+        try{
+            java.nio.file.Files.writeString(java.nio.file.Path.of(".ready"),"done\n");
+            System.out.println("Created .ready");
+        }catch(Exception e){
+            System.out.println("Failed to create .ready: "+e);
+        }
+    }catch(Exception e){
+        System.out.println("Error while pressing F5: "+e);
+    }
+}

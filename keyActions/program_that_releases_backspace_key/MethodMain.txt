@@ -1,0 +1,25 @@
+public static void main(String[] args) {
+    System.out.println("Pressing BACK_SPACE in 2 seconds...");
+    try {
+        Thread.sleep(2000);
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.keyPress(java.awt.event.KeyEvent.VK_BACK_SPACE);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_BACK_SPACE);
+        System.out.println("Done.");
+    } catch (Throwable t) {
+        t.printStackTrace();
+    }
+
+    // Create the global stop-condition marker file (must NOT use CreateTextFile for this).
+    try {
+        java.io.File f = new java.io.File(".ready");
+        if (!f.exists()) {
+            boolean ok = f.createNewFile();
+            System.out.println("Created .ready file: " + ok);
+        } else {
+            System.out.println(".ready already exists.");
+        }
+    } catch (Throwable t) {
+        t.printStackTrace();
+    }
+}

@@ -1,0 +1,12 @@
+public static void main(String[] args) {
+    try {
+        System.out.println("Pressing F8 in 1 second...");
+        Thread.sleep(1000);
+        java.awt.Robot r = new java.awt.Robot();
+        r.keyPress(java.awt.event.KeyEvent.VK_F8);
+        r.keyRelease(java.awt.event.KeyEvent.VK_F8);
+        System.out.println("F8 key press sent.");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

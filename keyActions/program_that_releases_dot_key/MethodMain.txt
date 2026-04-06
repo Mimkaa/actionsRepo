@@ -1,0 +1,29 @@
+public static void main(String[] args){
+    System.out.println("Pressing '.' via java.awt.Robot ...");
+    try{
+        if(java.awt.GraphicsEnvironment.isHeadless()){
+            System.out.println("Headless environment detected; Robot cannot be used.");
+        }else{
+            java.awt.Robot r=new java.awt.Robot();
+            r.setAutoDelay(50);
+            r.delay(500);
+            r.keyPress(java.awt.event.KeyEvent.VK_PERIOD);
+            r.keyRelease(java.awt.event.KeyEvent.VK_PERIOD);
+            System.out.println("Done (VK_PERIOD pressed and released).");
+        }
+    }catch(Throwable t){
+        t.printStackTrace();
+    }
+
+    // Termination signal per Rule 0: create a file named ".ready" in CWD
+    try{
+        java.io.File f=new java.io.File(".ready");
+        if(f.createNewFile()){
+            System.out.println("Created termination file: .ready");
+        }else{
+            System.out.println("Termination file already exists: .ready");
+        }
+    }catch(Throwable t){
+        t.printStackTrace();
+    }
+}

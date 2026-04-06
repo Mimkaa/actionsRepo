@@ -1,0 +1,13 @@
+public static void main(String[] args){
+  try{
+    System.out.println("Pressing key 8 in 1 second...");
+    Thread.sleep(1000);
+    java.awt.Robot r=new java.awt.Robot();
+    r.keyPress(java.awt.event.KeyEvent.VK_8);
+    r.keyRelease(java.awt.event.KeyEvent.VK_8);
+    System.out.println("Done. Creating .ready to terminate...");
+    new java.io.File(".ready").createNewFile();
+  }catch(Exception e){
+    e.printStackTrace();
+  }
+}

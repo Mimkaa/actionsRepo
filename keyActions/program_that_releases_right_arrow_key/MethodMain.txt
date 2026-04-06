@@ -1,0 +1,16 @@
+public static void main(String[] args) {
+    // Give user a moment to focus the target window
+    System.out.println("Focusing target window... pressing RIGHT ARROW in 2 seconds");
+    try {
+        Thread.sleep(2000);
+        java.awt.Robot robot = new java.awt.Robot();
+        robot.setAutoDelay(20);
+
+        robot.keyPress(java.awt.event.KeyEvent.VK_RIGHT);
+        robot.keyRelease(java.awt.event.KeyEvent.VK_RIGHT);
+
+        System.out.println("Pressed RIGHT ARROW");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
